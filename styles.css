@@ -192,6 +192,13 @@ body {
 .hero-main {
     position: relative;
     margin: 4rem 0;
+    min-height: 500px;
+}
+
+@media (max-width: 768px) {
+    .hero-main {
+        min-height: auto;
+    }
 }
 
 .hero-image-wrapper {
@@ -840,32 +847,42 @@ section {
     }
 
     .hero-main {
+        position: static;
         margin: 2rem 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 2rem;
+        width: 100%;
     }
 
     .hero-image-wrapper {
-        position: static;
-        transform: none;
+        position: static !important;
+        transform: none !important;
         width: 250px;
         height: 320px;
         order: 1;
-        margin: 0 auto;
-    }
-
-    .hero-title-large {
-        font-size: clamp(3rem, 12vw, 6rem);
-        order: 2;
-        margin-top: 1rem;
+        margin: 0 auto 2rem;
         z-index: 1;
     }
 
+    .hero-title-large {
+        font-size: clamp(2.5rem, 10vw, 5rem);
+        order: 2;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        z-index: 1;
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+
     .hero-info {
-        margin-top: 2rem;
+        margin-top: 1rem;
         order: 3;
+        width: 100%;
+        z-index: 1;
+        position: relative;
     }
 
     .about-wrapper {
@@ -912,19 +929,35 @@ section {
 @media (max-width: 480px) {
     .hero {
         padding: 5rem 1rem 3rem;
+        min-height: auto;
     }
 
     .hero-header {
         font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-main {
+        margin: 1.5rem 0;
+        gap: 1.5rem;
     }
 
     .hero-image-wrapper {
-        width: 200px;
-        height: 260px;
+        width: 200px !important;
+        height: 260px !important;
+        position: static !important;
+        transform: none !important;
+        margin: 0 auto 1.5rem !important;
     }
 
     .hero-title-large {
-        font-size: clamp(2.5rem, 10vw, 4rem);
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+        margin: 0 !important;
+        line-height: 1.1;
+    }
+
+    .hero-info {
+        margin-top: 1rem;
     }
 
     .hero-title {
