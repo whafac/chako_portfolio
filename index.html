@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="걸스힙합 댄서 포트폴리오">
+    <title>Chako - Girls Hip-Hop Dancer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CHAKO</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Girls Hip-Hop</span><br>
+                Dancer
+            </h1>
+            <p class="hero-subtitle">Passion. Rhythm. Movement.</p>
+            <a href="#portfolio" class="cta-button">View Portfolio</a>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead">
+                        힙합 댄스에 대한 열정과 창의성을 바탕으로<br>
+                        독특한 스타일과 표현력을 선보입니다.
+                    </p>
+                    <p>
+                        다양한 장르의 댄스를 경험하며, 특히 걸스힙합의 강렬함과 우아함을 
+                        조화롭게 표현하는 것을 추구합니다. 무대 위에서의 에너지와 
+                        관객과의 소통을 중시하며, 매 순간 최선을 다합니다.
+                    </p>
+                    <div class="skills">
+                        <span class="skill-tag">Hip-Hop</span>
+                        <span class="skill-tag">Girls Style</span>
+                        <span class="skill-tag">Choreography</span>
+                        <span class="skill-tag">Performance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Video Portfolio</h2>
+            <p class="section-subtitle">최근 작업과 퍼포먼스를 확인해보세요</p>
+            
+            <div class="video-grid" id="videoGrid">
+                <!-- Video items will be added here via JavaScript -->
+                <!-- Example structure:
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="YOUR_YOUTUBE_VIDEO_EMBED_URL" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Video Title</h3>
+                        <p>Description</p>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- Add Video Form (for easy management) -->
+            <div class="add-video-section">
+                <button class="add-video-btn" id="addVideoBtn">+ 비디오 추가</button>
+                <div class="video-form" id="videoForm" style="display: none;">
+                    <input type="text" id="videoTitle" placeholder="비디오 제목" class="form-input">
+                    <input type="text" id="videoUrl" placeholder="YouTube 또는 Vimeo URL" class="form-input">
+                    <textarea id="videoDescription" placeholder="설명 (선택사항)" class="form-textarea"></textarea>
+                    <div class="form-actions">
+                        <button class="btn-primary" id="saveVideoBtn">저장</button>
+                        <button class="btn-secondary" id="cancelVideoBtn">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">함께 작업하고 싶으시다면 연락주세요</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <a href="mailto:contact@example.com" class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-item">
+                        <span class="contact-icon">📷</span>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="contact-item">
+                        <span class="contact-icon">▶️</span>
+                        <span>YouTube</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Chako. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
