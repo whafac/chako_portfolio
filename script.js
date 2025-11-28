@@ -58,7 +58,14 @@ const saveVideoBtn = document.getElementById('saveVideoBtn');
 const cancelVideoBtn = document.getElementById('cancelVideoBtn');
 
 // Load videos from localStorage
-let videos = JSON.parse(localStorage.getItem('portfolioVideos')) || [];
+let videos = JSON.parse(localStorage.getItem('portfolioVideos')) || [
+    {
+        title: "YouTube Channel",
+        url: "https://youtube.com/@howhaveyubin3635",
+        description: "정유빈의 댄스 & 연출 영상 채널",
+        isChannel: true
+    }
+];
 
 // Render videos
 function renderVideos() {
@@ -73,24 +80,49 @@ function renderVideos() {
     }
 
     videoGrid.innerHTML = videos.map((video, index) => {
-        const embedUrl = convertToEmbedUrl(video.url);
-        return `
-            <div class="video-item">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="${embedUrl}" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+        if (video.isChannel) {
+            // YouTube 채널 링크인 경우
+            const channelId = video.url.match(/@([^/?]+)/)?.[1] || '';
+            const channelEmbedUrl = `https://www.youtube.com/embed?listType=user_uploads&list=${channelId}`;
+            return `
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="${channelEmbedUrl}" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>${video.title}</h3>
+                        ${video.description ? `<p>${video.description}</p>` : ''}
+                        <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="channel-link" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: #ff0000; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">채널 보기</a>
+                        ${index > 0 ? `<button class="delete-video-btn" onclick="deleteVideo(${index})" style="margin-top: 1rem; margin-left: 0.5rem; padding: 0.5rem 1rem; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">삭제</button>` : ''}
+                    </div>
                 </div>
-                <div class="video-info">
-                    <h3>${video.title}</h3>
-                    ${video.description ? `<p>${video.description}</p>` : ''}
-                    <button class="delete-video-btn" onclick="deleteVideo(${index})" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">삭제</button>
+            `;
+        } else {
+            // 일반 비디오인 경우
+            const embedUrl = convertToEmbedUrl(video.url);
+            return `
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="${embedUrl}" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>${video.title}</h3>
+                        ${video.description ? `<p>${video.description}</p>` : ''}
+                        <button class="delete-video-btn" onclick="deleteVideo(${index})" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">삭제</button>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
     }).join('');
 }
 
@@ -140,10 +172,13 @@ saveVideoBtn.addEventListener('click', () => {
         return;
     }
     
+    const isChannel = url.includes('youtube.com/@') || url.includes('youtube.com/c/') || url.includes('youtube.com/channel/');
+    
     videos.push({
         title,
         url,
-        description
+        description,
+        isChannel: isChannel || false
     });
     
     localStorage.setItem('portfolioVideos', JSON.stringify(videos));
@@ -197,6 +232,11 @@ document.querySelectorAll('section').forEach(section => {
 });
 
 // Initialize
+// Save default channel to localStorage if not exists
+const savedVideos = JSON.parse(localStorage.getItem('portfolioVideos')) || [];
+if (savedVideos.length === 0) {
+    localStorage.setItem('portfolioVideos', JSON.stringify(videos));
+}
 renderVideos();
 
 // Navbar scroll effect
