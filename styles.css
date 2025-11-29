@@ -860,7 +860,7 @@ section {
         align-items: center;
         gap: 2rem;
         width: 100%;
-        order: 2;
+        order: 1;
     }
 
     .hero-image-wrapper {
@@ -868,14 +868,14 @@ section {
         transform: none !important;
         width: 250px;
         height: 320px;
-        order: 1;
+        order: 2;
         margin: 0 auto 2rem;
         z-index: 1;
     }
 
     .hero-title-large {
         font-size: clamp(2.5rem, 10vw, 5rem);
-        order: 2;
+        order: 1;
         margin-top: 0;
         margin-bottom: 1rem;
         z-index: 1;
@@ -886,7 +886,7 @@ section {
 
     .hero-info {
         margin-top: 0;
-        order: 1;
+        order: 2;
         width: 100%;
         z-index: 1;
         position: relative;
@@ -967,14 +967,22 @@ section {
         gap: 1.5rem;
     }
 
-    .hero-info {
-        margin-top: 0;
+    .hero-main {
+        order: 1;
+        margin: 0;
+    }
+
+    .hero-title-large {
         order: 1;
     }
 
-    .hero-main {
+    .hero-image-wrapper {
         order: 2;
-        margin: 0;
+    }
+
+    .hero-info {
+        margin-top: 0;
+        order: 2;
     }
 
     .hero-title {
